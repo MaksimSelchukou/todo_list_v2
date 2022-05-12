@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /*align-items: center;*/
+    justify-content: center;
+    border: 2px solid black;
+    max-width: 200px;
+}
+
+
+li {
+    list-style-type: none;
+    text-align: left;
+    align-items: flex-start;
+}
+
+/*.button {*/
+
+/*    text-align: center;*/
+/*}*/

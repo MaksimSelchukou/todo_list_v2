@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
+import {Todolist} from "./components/Todolist";
 
 export type TaskType = {
     id: number
@@ -18,7 +19,10 @@ function App() {
 
     return (
         <div className="App">
-            Create Todolist!
+            <Todolist
+                title="Todolist1"
+                tasks={tasks}
+            />
         </div>
     );
 }
