@@ -1,6 +1,8 @@
 import React, {ChangeEvent, useState} from 'react';
 import {FilterType, TaskType} from "../App";
 import styles from "./Todolist.module.css"
+import {ButtonFilter} from "./buttons/ButtonFilter";
+import {AddItemForm} from "./AddItemForm";
 
 type TodolistType = {
     title: string
@@ -8,47 +10,44 @@ type TodolistType = {
     deleteTask: (taskId: string) => void
     addTask: (titleTask: string) => void
     changeStatusTask: (taskId: string, status: boolean) => void
-    setFilter: (filter: FilterType) => void
+    sortTasks: (value: FilterType) => void
+    filter: FilterType
 }
 
 export const Todolist = (props: TodolistType) => {
 
-    const {title, tasks, deleteTask, addTask, changeStatusTask, setFilter} = props
 
-    const [titleTask, setTitleTask] = useState('')
+    const {title, tasks, deleteTask, addTask, changeStatusTask, sortTasks} = props
 
     const handleDeleteTask = (taskId: string) => {
         deleteTask(taskId)
     }
 
-    const handleAddTask = () => {
-        addTask(titleTask)
-    }
-
-    const getValueTitleTask = (event: ChangeEvent<HTMLInputElement>) => {
-        setTitleTask(event.currentTarget.value)
-    }
-
     const handleButtonFiltered = (value: FilterType) => {
-        setFilter(value)
+        sortTasks(value)
     }
 
     return (
         <div className={styles.container}>
             <h2>{title}</h2>
-            <input type="text" onChange={getValueTitleTask}/>
-            <button onClick={handleAddTask}>+</button>
+
+            <AddItemForm name='+'
+                         callBack={(titleTask) => addTask(titleTask)}
+            />
             <ul>
                 {
                     tasks.map(task => {
+                        const onChangeHandle = (event: ChangeEvent<HTMLInputElement>) => {
+                            changeStatusTask(task.id, event.currentTarget.checked)
+                        }
+
                         return (
                             <li key={task.id}>
                                 <input
-                                    onChange={(e) => {
-                                        changeStatusTask(task.id, e.currentTarget.checked)
-
-                                    }}
-                                    type="checkbox" checked={task.isDone}/>
+                                    onChange={onChangeHandle}
+                                    type="checkbox"
+                                    checked={task.isDone}
+                                />
                                 <span>{task.title}</span>
                                 <button onClick={() => handleDeleteTask(task.id)}>x</button>
                             </li>
@@ -58,9 +57,9 @@ export const Todolist = (props: TodolistType) => {
                 }
             </ul>
             <div>
-                <button onClick={() => handleButtonFiltered('all')} className={styles.button}>All</button>
-                <button onClick={() => handleButtonFiltered('active')} className={styles.button}>Active</button>
-                <button onClick={() => handleButtonFiltered('completed')} className={styles.button}>Completed</button>
+                <ButtonFilter filter={props.filter} name="all" handleButtonFiltered={() => handleButtonFiltered("all")}/>
+                <ButtonFilter filter={props.filter} name="active" handleButtonFiltered={() => handleButtonFiltered("active")}/>
+                <ButtonFilter filter={props.filter} name="completed" handleButtonFiltered={() => handleButtonFiltered("completed")}/>
             </div>
 
         </div>

@@ -24,18 +24,23 @@ function App() {
 
     const [filter, setFilter] = useState<FilterType>('all')
 
-    const deleteTask = (taskId: string) => {
-        setTasks(tasks.filter(f => f.id !== taskId))
-    }
-
     const addTask = (titleTask: string) => {
         const newTask: TaskType = {id: v1(), title: titleTask, isDone: false}
-        setTasks([...tasks, newTask])
+        setTasks([newTask, ...tasks])
+    }
+
+    const deleteTask = (taskId: string) => {
+        setTasks(tasks.filter(f => f.id !== taskId))
     }
 
     const changeStatusTask = (taskId: string, status: boolean) => {
         setTasks(tasks.map(task => task.id === taskId ? {...task, isDone: status} : task))
     }
+
+    const sortTasks = (value: FilterType) => {
+        setFilter(value)
+    }
+
     let filteredTasks = tasks
     if (filter === 'completed') {
         filteredTasks = tasks.filter(f => f.isDone)
@@ -53,7 +58,8 @@ function App() {
                 deleteTask={deleteTask}
                 addTask={addTask}
                 changeStatusTask={changeStatusTask}
-                setFilter={setFilter}
+                sortTasks={sortTasks}
+                filter={filter}
             />
         </div>
     );

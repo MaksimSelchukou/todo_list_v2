@@ -9,13 +9,14 @@
 }
 
 
+
+
 li {
     list-style-type: none;
     text-align: left;
     align-items: flex-start;
 }
 
-/*.button {*/
-
-/*    text-align: center;*/
-/*}*/
+.filterActive {
+    background: lightblue;
+}
