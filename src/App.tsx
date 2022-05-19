@@ -15,7 +15,7 @@ export type TaskType = {
     isDone: boolean
 }
 
-type TasksType = {
+export type TasksType = {
     [key: string]: Array<TaskType>
 }
 
@@ -30,7 +30,6 @@ export type FilterType = 'all' | 'active' | 'completed'
 function App() {
     const todolistId1 = v1();
     const todolistId2 = v1();
-
     const [todolists, setTodolists] = useState<Array<TodolistItemType>>([
         {id: todolistId1, title: "TodoListsOne", filter: 'all'},
         {id: todolistId2, title: "TodoListsSecond", filter: 'all'}
