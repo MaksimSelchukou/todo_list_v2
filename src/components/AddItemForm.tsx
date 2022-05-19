@@ -1,9 +1,10 @@
-import React, {KeyboardEvent, ChangeEvent, useState} from 'react';
-import styles from './AddItemForm.module.css'
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {IconButton, TextField} from "@mui/material";
+import {ControlPoint} from "@mui/icons-material";
 
 type AddItemFormType = {
-    callBack: (titleTask: string) => void
-    name: string
+    addItem: (titleTask: string) => void
+
 }
 
 export const AddItemForm = (props: AddItemFormType) => {
@@ -14,7 +15,7 @@ export const AddItemForm = (props: AddItemFormType) => {
 
     const handleAddTask = () => {
         if (titleTask.trim() !== '') {
-            props.callBack(titleTask.trim())
+            props.addItem(titleTask.trim())
             setTitleTask('')
 
         } else {
@@ -35,18 +36,21 @@ export const AddItemForm = (props: AddItemFormType) => {
     }
 
     return (
-        <>
-            <input
+        <div>
+            <TextField
+                error={!!error}
+                label="Введите назв. таски"
+                helperText={error}
+                size={"small"}
                 value={titleTask}
-                className={error ? styles.error : ''}
                 type="text"
                 onChange={onchangeHandler}
                 onKeyPress={onKeyPressHandler}
             />
-            <button onClick={handleAddTask}>{props.name}</button>
-            {error && <div className={styles.errorText}>{error}</div>}
+            <IconButton  color={'primary'} size={'medium'}  onClick={handleAddTask}><ControlPoint/></IconButton>
+            {/*{error && <div className={styles.errorText}>{error}</div>}*/}
 
-        </>
+        </div>
     );
 };
 

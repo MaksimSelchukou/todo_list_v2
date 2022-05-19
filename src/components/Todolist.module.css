@@ -1,22 +1,46 @@
-.container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    /*align-items: center;*/
-    justify-content: center;
-    border: 2px solid black;
-    max-width: 200px;
-}
+/*.container {*/
+/*    !*display: inline-block;*!*/
+/*    !*flex-direction: row;*!*/
+/*    !*flex-wrap: wrap;*!*/
+/*    text-align: center;*/
+/*    justify-content: center;*/
+/*    border: 2px solid black;*/
+/*    width: 300px;*/
+/*}*/
+
+/*li {*/
+/*    list-style-type: none;*/
+/*    text-align: left;*/
+/*    align-items: flex-start;*/
+/*}*/
+
+/*.filterActive {*/
+/*    background: lightblue;*/
+/*}*/
+
+/*.opacityLi {*/
+/*    opacity: 0.5;*/
+/*}*/
+
+/*.buttonFilter{*/
+/*    display: inline-block;*/
+/*    !*width: 200px;*!*/
+/*    !*height: 200px;*!*/
+/*    vertical-align: bottom;*/
+/*}*/
+
+/*.container:after {*/
+/*    content: '';*/
+/*    display: inline-block;*/
+/*    !*height: 1%;*!*/
+/*    vertical-align: bottom;*/
+/*}*/
+/*h2{*/
+/*    display: inline-block;*/
+/*}*/
+
+/*.buttonFilter{*/
+/*    margin: 3px;*/
+/*}*/
 
 
-
-
-li {
-    list-style-type: none;
-    text-align: left;
-    align-items: flex-start;
-}
-
-.filterActive {
-    background: lightblue;
-}
